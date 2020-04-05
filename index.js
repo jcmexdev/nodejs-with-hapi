@@ -42,6 +42,24 @@ async function init() {
 
     server.route({
       method: 'GET',
+      path: '/register',
+      handler: (req, h) => {
+        return h.view('register', {
+          title: 'Registro',
+        });
+      },
+    });
+
+    server.route({
+      method: 'POST',
+      path: '/create-user',
+      handler: (req, h) => {
+        return h.response(req.payload);
+      },
+    });
+
+    server.route({
+      method: 'GET',
       path: '/{param*}',
       handler: {
         directory: {
