@@ -22,6 +22,12 @@ async function init() {
     await server.register(inert);
     await server.register(vision);
 
+    server.state('user', {
+      ttl: 1000 * 60 * 60 * 24 * 7,
+      isSecure: config.appEnv === 'prod',
+      encoding: 'base64json',
+    });
+
     server.views({
       engines: {
         hbs: handlebars,
@@ -37,7 +43,7 @@ async function init() {
     console.error(error);
     process.exit(1);
   }
-  console.log(`servidor lanzado en: ${server.info.uri}`);
+  console.log(`server listening on ${server.info.uri}`);
 }
 
 init();
