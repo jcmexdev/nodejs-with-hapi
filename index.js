@@ -5,10 +5,11 @@ const inert = require('@hapi/inert');
 const path = require('path');
 const vision = require('@hapi/vision');
 const routes = require('./routes');
+const { config } = require('./config/index');
 
 const server = Hapi.server({
-  port: process.env.PORT || 3000,
-  host: 'localhost',
+  port: config.port,
+  host: config.host,
   routes: {
     files: {
       relativeTo: path.join(__dirname, 'public'),
