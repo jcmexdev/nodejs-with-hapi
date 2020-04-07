@@ -8,6 +8,14 @@ const routes = require('./routes');
 const { config } = require('./config/index');
 const site = require('./controllers/site');
 
+handlebars.registerHelper('answerNumber', (answers) => {
+  if (answers === undefined) {
+    return 0;
+  }
+  const keys = Object.keys(answers);
+  return keys.length;
+});
+
 const server = Hapi.server({
   port: config.port,
   host: config.host,
