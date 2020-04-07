@@ -1,3 +1,5 @@
+'use strict';
+
 const Joi = require('@hapi/joi');
 const site = require('./controllers/site');
 const user = require('./controllers/user');
@@ -33,6 +35,11 @@ module.exports = [
     method: 'GET',
     path: '/login',
     handler: site.login,
+  },
+  {
+    method: 'GET',
+    path: '/question/{id}',
+    handler: site.viewQuestion,
   },
   {
     method: 'GET',
@@ -78,7 +85,7 @@ module.exports = [
     handler: {
       directory: {
         path: '.',
-        index: ['index'],
+        index: ['index.html'],
       },
     },
   },

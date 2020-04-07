@@ -59,6 +59,25 @@ function ask(req, h) {
   });
 }
 
+async function viewQuestion(req, h) {
+  let data;
+  try {
+    data = await questions.getOne(req.params.id);
+    if (!data) {
+      return notFound(req, h);
+    }
+  } catch (error) {
+    req.log('error', error);
+  }
+
+  return h.view('question', {
+    title: 'Detalles de la pregunta',
+    user: req.state.user,
+    question: data,
+    key: req.params.id,
+  });
+}
+
 module.exports = {
   register,
   home,
@@ -66,4 +85,5 @@ module.exports = {
   notFound,
   fileNotFound,
   ask,
+  viewQuestion,
 };
