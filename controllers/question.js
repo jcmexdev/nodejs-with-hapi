@@ -2,6 +2,9 @@
 const { questions } = require('../models/index');
 
 async function createQuestion(req, h) {
+  if (!req.state.user) {
+    return h.redirect('/login');
+  }
   let { payload, state } = req;
   let result;
   try {

@@ -20,7 +20,7 @@ class Answer {
   }
 
   async setAnswerRight(questionId, answerId, user) {
-    const query = this.collection.child(questionId).once('value');
+    const query = await this.collection.child(questionId).once('value');
     const question = query.val();
     const answers = question.answers;
     if (!user.email === question.owner.email) {
