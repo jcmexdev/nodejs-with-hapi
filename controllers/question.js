@@ -1,4 +1,7 @@
 'use strict';
+const { writeFile } = require('fs');
+const { join } = require('path');
+const uuid = require('uuid/v1');
 const { questions } = require('../models/index');
 
 async function createQuestion(req, h) {
@@ -6,9 +9,21 @@ async function createQuestion(req, h) {
     return h.redirect('/login');
   }
   let { payload, state } = req;
-  let result;
+  let result, filename;
+
   try {
-    result = await questions.create(payload, state.user);
+    if (Buffer.isBuffer(payload.image)) {
+      filename = `${uuid()}.png`;
+      await writeFile(
+        join(__dirname, '../public', 'uploads', filename),
+        payload.image,
+        function (err) {
+          if (err) throw err;
+          console.log('Saved!');
+        }
+      );
+    }
+    result = await questions.create(payload, state.user, filename);
     console.log(`Pregunta creada con el id: ${result}`);
   } catch (error) {
     console.error(error);
@@ -20,7 +35,7 @@ async function createQuestion(req, h) {
       .code(500)
       .takeover();
   }
-  return h.response(`Pregunta creada con el id: ${result}`).code(201);
+  return h.redirect(`/question/${result}`);
 }
 
 module.exports = {
