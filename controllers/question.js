@@ -19,14 +19,14 @@ async function createQuestion(req, h) {
         payload.image,
         function (err) {
           if (err) throw err;
-          console.log('Saved!');
+          req.log('info', 'File upload success');
         }
       );
     }
     result = await questions.create(payload, state.user, filename);
-    console.log(`Pregunta creada con el id: ${result}`);
+    req.log('info', `Pregunta creada con el id: ${result}`);
   } catch (error) {
-    console.error(error);
+    req.log('error', error);
     return h
       .view('ask', {
         title: 'Crear pregunta',
