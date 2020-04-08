@@ -8,7 +8,8 @@ class Questions {
   }
 
   async create(data, user, filename) {
-    const question = { ...data, owner: user };
+    const { image, ...all } = data;
+    const question = { ...all, owner: user };
     if (filename) {
       question.filename = filename;
     }
