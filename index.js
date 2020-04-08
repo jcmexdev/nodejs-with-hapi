@@ -1,5 +1,6 @@
 'use strict';
 const Hapi = require('@hapi/hapi');
+const hapiDevErrors = require('hapi-dev-errors');
 const scooter = require('@hapi/scooter');
 const blankie = require('blankie');
 const crumb = require('crumb');
@@ -63,6 +64,13 @@ async function init() {
         },
       },
     ]);
+
+    await server.register({
+      plugin: hapiDevErrors,
+      options: {
+        showErrors: config.appEnv !== 'prod',
+      },
+    });
 
     await server.register(require('./lib/api'));
 
