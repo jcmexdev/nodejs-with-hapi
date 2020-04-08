@@ -16,22 +16,23 @@
   "author": "Juan Carlos Garcia Esquivel",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.2",
-    "standard": "^14.3.3"
+    "nodemon": "2.0.2",
+    "standard": "14.3.3"
   },
   "dependencies": {
-    "@hapi/basic": "^6.0.0",
-    "@hapi/boom": "^9.1.0",
-    "@hapi/good": "^9.0.0",
-    "@hapi/good-console": "^9.0.0",
-    "@hapi/hapi": "^19.1.1",
-    "@hapi/inert": "^6.0.1",
-    "@hapi/joi": "^17.1.1",
-    "@hapi/vision": "^6.0.0",
-    "bcrypt": "^4.0.1",
-    "dotenv": "^8.2.0",
-    "firebase-admin": "^8.10.0",
-    "handlebars": "^4.7.6",
-    "uuid": "^7.0.3"
+    "@hapi/basic": "6.0.0",
+    "@hapi/boom": "9.1.0",
+    "@hapi/good": "9.0.0",
+    "@hapi/good-console": "9.0.0",
+    "@hapi/hapi": "19.1.1",
+    "@hapi/inert": "6.0.1",
+    "@hapi/joi": "17.1.1",
+    "@hapi/vision": "6.0.0",
+    "bcrypt": "4.0.1",
+    "crumb": "7.2.3",
+    "dotenv": "8.2.0",
+    "firebase-admin": "8.10.0",
+    "handlebars": "4.7.6",
+    "uuid": "7.0.3"
   }
 }
