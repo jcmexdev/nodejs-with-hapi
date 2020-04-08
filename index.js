@@ -39,6 +39,8 @@ async function init() {
       },
     });
 
+    await server.register(require('./lib/api'));
+
     server.method('setAnswerRight', methods.setAnswerRight);
     server.method('getLast', methods.getLast, {
       cache: {
